@@ -1,0 +1,16 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+# Dolphin directory file
+.directory
+
+# IntelliJ project files
+.idea
+*.iml
+
+# Java stuff
+target
+
+# Docker stuff #
+*.deployed
+docker-dir/deploy/
+
