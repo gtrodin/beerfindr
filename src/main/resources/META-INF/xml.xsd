@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Volymiml" type="xs:float"/>
+    <xs:element name="Varugrupp" type="xs:string"/>
+    <xs:element name="Stil" type="xs:string"/>
+    <xs:element name="nr" type="xs:int"/>
+    <xs:element name="Argang" type="xs:string"/>
+    <xs:element name="EtisktEtikett">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="Fairtrade"/>
+                <xs:enumeration value="Fair for Life"/>
+                <xs:enumeration value="Etisk"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="Namn2" type="xs:string"/>
+    <xs:element name="Producent" type="xs:string"/>
+    <xs:element name="PrisPerLiter" type="xs:float"/>
+    <xs:element name="Forslutning" type="xs:string"/>
+    <xs:element name="Provadargang" type="xs:string"/>
+    <xs:element name="Sortiment">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="FS"/>
+                <xs:enumeration value="BS"/>
+                <xs:enumeration value="TSLS"/>
+                <xs:enumeration value="FSN"/>
+                <xs:enumeration value="TSE"/>
+                <xs:enumeration value="FSB"/>
+                <xs:enumeration value="FSÖ"/>
+                <xs:enumeration value="TSS"/>
+                <xs:enumeration value="TSV"/>
+                <xs:enumeration value="TST"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="meddelande" type="xs:string"/>
+    <xs:element name="Namn" type="xs:string"/>
+    <xs:element name="Forpackning" type="xs:string"/>
+    <xs:element name="Ekologisk">
+        <xs:simpleType>
+            <xs:restriction base="xs:byte">
+                <xs:enumeration value="0"/>
+                <xs:enumeration value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="Artikelid" type="xs:int"/>
+    <xs:element name="info">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="meddelande"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Leverantor" type="xs:string"/>
+    <xs:element name="Koscher">
+        <xs:simpleType>
+            <xs:restriction base="xs:byte">
+                <xs:enumeration value="0"/>
+                <xs:enumeration value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="Ursprunglandnamn" type="xs:string"/>
+    <xs:element name="Prisinklmoms" type="xs:float"/>
+    <xs:element name="Alkoholhalt" type="xs:string"/>
+    <xs:element name="Typ" type="xs:string"/>
+    <xs:element name="RavarorBeskrivning" type="xs:string"/>
+    <xs:element name="skapad-tid" type="xs:string"/>
+    <xs:element name="Etiskt">
+        <xs:simpleType>
+            <xs:restriction base="xs:byte">
+                <xs:enumeration value="0"/>
+                <xs:enumeration value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="Ursprung" type="xs:string"/>
+    <xs:element name="Pant">
+        <xs:simpleType>
+            <xs:restriction base="xs:float">
+                <xs:enumeration value="1.00"/>
+                <xs:enumeration value="0.90"/>
+                <xs:enumeration value="4.00"/>
+                <xs:enumeration value="6.00"/>
+                <xs:enumeration value="0.60"/>
+                <xs:enumeration value="625.00"/>
+                <xs:enumeration value="2.00"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="artikel">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="nr"/>
+                <xs:element ref="Artikelid"/>
+                <xs:element ref="Varnummer"/>
+                <xs:element ref="Namn"/>
+                <xs:element ref="Namn2"/>
+                <xs:element ref="Prisinklmoms"/>
+                <xs:element ref="Pant" minOccurs="0"/>
+                <xs:element ref="Volymiml"/>
+                <xs:element ref="PrisPerLiter"/>
+                <xs:element ref="Saljstart"/>
+                <xs:element ref="Utgått"/>
+                <xs:element ref="Varugrupp"/>
+                <xs:element ref="Typ"/>
+                <xs:element ref="Stil"/>
+                <xs:element ref="Forpackning"/>
+                <xs:element ref="Forslutning"/>
+                <xs:element ref="Ursprung"/>
+                <xs:element ref="Ursprunglandnamn"/>
+                <xs:element ref="Producent" minOccurs="0"/>
+                <xs:element ref="Leverantor"/>
+                <xs:element ref="Argang"/>
+                <xs:element ref="Provadargang"/>
+                <xs:element ref="Alkoholhalt"/>
+                <xs:element ref="Sortiment"/>
+                <xs:element ref="Ekologisk"/>
+                <xs:element ref="Etiskt"/>
+                <xs:element ref="EtisktEtikett" minOccurs="0"/>
+                <xs:element ref="Koscher"/>
+                <xs:element ref="RavarorBeskrivning" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Varnummer" type="xs:int"/>
+    <xs:element name="Saljstart" type="xs:date"/>
+    <xs:element name="artiklar">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="skapad-tid"/>
+                <xs:element ref="info"/>
+                <xs:element ref="artikel" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Utgått" type="xs:byte"/>
+</xs:schema>
