@@ -1,5 +1,5 @@
 
-package com.trodin.beerfindr.jaxb;
+package com.trodin.beerfindr.jaxb.articles;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

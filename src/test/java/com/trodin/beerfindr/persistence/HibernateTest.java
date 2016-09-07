@@ -1,15 +1,12 @@
 package com.trodin.beerfindr.persistence;
 
-import com.trodin.beerfindr.jaxb.ArticleXmlParser;
+import com.trodin.beerfindr.jaxb.XmlParser;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
     public class HibernateTest {
@@ -24,10 +21,16 @@ import java.util.List;
 
     @Test
     public void testDatabasePopulation() {
-        ArticleXmlParser articleXmlParser = new ArticleXmlParser();
+        XmlParser xmlParser = new XmlParser();
 
-        List<Beer> beers = articleXmlParser.parseBeers();
         entityManager.getTransaction().begin();
+
+        List<Store> stores = xmlParser.parseStores();
+        for (Store store : stores) {
+            entityManager.persist(store);
+        }
+
+        List<Beer> beers = xmlParser.parseBeers();
         for (Beer beer : beers) {
             entityManager.persist(beer);
         }

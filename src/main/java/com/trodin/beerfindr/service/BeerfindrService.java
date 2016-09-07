@@ -1,18 +1,17 @@
 package com.trodin.beerfindr.service;
 
-import com.trodin.beerfindr.jobs.DatabasePopulationTaskManager;
-import com.trodin.beerfindr.persistence.Beer;
-import com.trodin.beerfindr.persistence.BeerDAO;
+import com.trodin.beerfindr.persistence.dao.BeerfindrDAO;
+import com.trodin.beerfindr.tasks.DatabasePopulationTaskManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
+import javax.ws.rs.BeanParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 @Path("/api")
 public class BeerfindrService {
@@ -21,54 +20,43 @@ public class BeerfindrService {
     private DatabasePopulationTaskManager databasePopulationTaskManager = new DatabasePopulationTaskManager();
 
     @Inject
-    BeerDAO beerDAO;
+    BeerfindrDAO beerfindrDAO;
 
     @GET
-    @Path("/find-beer/{name}")
-    @Produces("application/json")
-    public Beer getBeer(@PathParam("name") String name) {
-        logger.info("Looking for a beer with name " + name);
-        return beerDAO.getBeerByName(name);
+    @Path("/beers")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getBeers(@BeanParam BeerParameterBean beerParameterBean) {
+        logger.info("Fetching beers...");
+        return Response.status(Response.Status.OK).entity(beerfindrDAO.getBeers(beerParameterBean)).build();
     }
 
     @GET
-    @Path("/get-beers/{name}")
-    @Produces("application/json")
-    public Response getBeersByName(@PathParam("name") String name) {
-        logger.info("Looking for beers with name " + name);
-        List<Beer> beers = beerDAO.getBeersByName(name);
-        for (Beer beer : beers) {
-            logger.info(beer.getName());
-        }
-        return Response.status(200).entity(beers).build();
-    }
-
-    @GET
-    @Path("/get-beers")
-    @Produces("application/json")
-    public Response getBeers() {
-        logger.info("Fetching all beers");
-        return Response.status(200).entity(beerDAO.getAllBeers()).build();
+    @Path("/stores")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getStores(@BeanParam StoreParameterBean storeParameterBean) {
+        logger.info("Fetching stores...");
+        return Response.status(Response.Status.OK).entity(beerfindrDAO.getStores(storeParameterBean)).build();
     }
 
     @GET
     @Path("/test-beerfindr-service")
+    @Produces(MediaType.TEXT_PLAIN)
     public Response testBeerService() {
         logger.info("Testing beerfindr service");
-        return Response.status(200).entity("Beerfindr service is working!").build();
+        return Response.status(Response.Status.OK).entity("Beerfindr service is working!").build();
     }
 
     @GET
     @Path("/trigger-population-job")
     public Response triggerPopulationJob() {
-        databasePopulationTaskManager.startDatabasePopulationTask(beerDAO);
-        return Response.status(200).entity("Triggered database population job").build();
+        databasePopulationTaskManager.startDatabasePopulationTask(beerfindrDAO);
+        return Response.status(Response.Status.OK).entity("Triggered database population job").build();
     }
 
     @GET
     @Path("/cancel-population-job")
     public Response cancelPopulationJob() {
         databasePopulationTaskManager.cancelDatabasePopulationTask();
-        return Response.status(200).entity("Cancelled database population job").build();
+        return Response.status(Response.Status.OK).entity("Cancelled database population job").build();
     }
 }

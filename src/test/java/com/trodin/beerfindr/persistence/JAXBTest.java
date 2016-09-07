@@ -1,7 +1,7 @@
 package com.trodin.beerfindr.persistence;
 
-import com.trodin.beerfindr.jaxb.Artikel;
-import com.trodin.beerfindr.jaxb.Artiklar;
+import com.trodin.beerfindr.jaxb.articles.Artikel;
+import com.trodin.beerfindr.jaxb.articles.Artiklar;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -16,6 +16,7 @@ import java.util.List;
 public class JAXBTest {
 
     @Test
+    @Ignore
     public void testXMLUnmarshalling() {
 
         try {

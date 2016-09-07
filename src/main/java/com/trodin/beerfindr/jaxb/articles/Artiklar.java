@@ -1,5 +1,5 @@
 
-package com.trodin.beerfindr.jaxb;
+package com.trodin.beerfindr.jaxb.articles;
 
 import java.util.ArrayList;
 import java.util.List;

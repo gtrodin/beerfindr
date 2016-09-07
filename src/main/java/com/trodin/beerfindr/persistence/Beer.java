@@ -1,37 +1,33 @@
 package com.trodin.beerfindr.persistence;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "BEERS")
 public class Beer {
 
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    private int id;
+    @GeneratedValue
+    private Integer id;
+
+    @Column
+    private Integer number;
 
     @Column
     private String name;
 
     @Column
-    private int articleId;
+    private Float price;
 
     @Column
-    private float price;
+    private Float alcoholPercentage;
 
     @Column
-    private String alcoholVolume;
-
-    @Column
-    private float volumeInMilliliter;
+    private Float volume;
 
     @Temporal(TemporalType.DATE)
     @Column
-    private Date dateOfFirstSale;
+    private Date dateOfIntroduction;
 
     @Column
     private String style;
@@ -55,18 +51,31 @@ public class Beer {
     private String supplier;
 
     @Column
-    private String year;
+    private Integer year;
 
     public Beer() {
     }
 
-    public Beer(String name, int articleId, float price, String alcoholVolume, float volumeInMilliliter, Date dateOfFirstSale, String style, String packaging, String sealing, String origin, String originCountry, String producer, String supplier, String year) {
+    public Beer(Integer number,
+                String name,
+                Float price,
+                Float alcoholPercentage,
+                Float volume,
+                Date dateOfIntroduction,
+                String style,
+                String packaging,
+                String sealing,
+                String origin,
+                String originCountry,
+                String producer,
+                String supplier,
+                Integer year) {
         this.name = name;
-        this.articleId = articleId;
+        this.number = number;
         this.price = price;
-        this.alcoholVolume = alcoholVolume;
-        this.volumeInMilliliter = volumeInMilliliter;
-        this.dateOfFirstSale = dateOfFirstSale;
+        this.alcoholPercentage = alcoholPercentage;
+        this.volume = volume;
+        this.dateOfIntroduction = dateOfIntroduction;
         this.style = style;
         this.packaging = packaging;
         this.sealing = sealing;
@@ -77,11 +86,11 @@ public class Beer {
         this.year = year;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -93,44 +102,44 @@ public class Beer {
         this.name = name;
     }
 
-    public int getArticleId() {
-        return articleId;
+    public Integer getNumber() {
+        return number;
     }
 
-    public void setArticleId(int articleId) {
-        this.articleId = articleId;
+    public void setNumber(Integer articleId) {
+        this.number = articleId;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
-    public String getAlcoholVolume() {
-        return alcoholVolume;
+    public Float getAlcoholPercentage() {
+        return alcoholPercentage;
     }
 
-    public void setAlcoholVolume(String alcoholVolume) {
-        this.alcoholVolume = alcoholVolume;
+    public void setAlcoholPercentage(Float alcoholPercentage) {
+        this.alcoholPercentage = alcoholPercentage;
     }
 
-    public float getVolumeInMilliliter() {
-        return volumeInMilliliter;
+    public Float getVolume() {
+        return volume;
     }
 
-    public void setVolumeInMilliliter(float volumeInMilliliter) {
-        this.volumeInMilliliter = volumeInMilliliter;
+    public void setVolume(Float volumeInMilliliter) {
+        this.volume = volumeInMilliliter;
     }
 
-    public Date getDateOfFirstSale() {
-        return dateOfFirstSale;
+    public Date getDateOfIntroduction() {
+        return dateOfIntroduction;
     }
 
-    public void setDateOfFirstSale(Date dateOfFirstSale) {
-        this.dateOfFirstSale = dateOfFirstSale;
+    public void setDateOfIntroduction(Date dateOfFirstSale) {
+        this.dateOfIntroduction = dateOfFirstSale;
     }
 
     public String getStyle() {
@@ -189,12 +198,11 @@ public class Beer {
         this.supplier = supplier;
     }
 
-    public String getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
-
 }
