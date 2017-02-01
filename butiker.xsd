@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SokOrd" type="xs:string"/>
+  <xs:element name="Nr" type="xs:string"/>
+  <xs:element name="Oppettider" type="xs:string"/>
+  <xs:element name="Address2" type="xs:string"/>
+  <xs:element name="Address3" type="xs:string"/>
+  <xs:element name="Typ">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="Butik"/>
+        <xs:enumeration value="Ombud"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="RT90y" type="xs:string"/>
+  <xs:element name="Address1" type="xs:string"/>
+  <xs:element name="Info">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Meddelande"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Namn" type="xs:string"/>
+  <xs:element name="Tjanster">
+    <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:enumeration value=""/>
+        <xs:enumeration value="Dryckesprovning"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="ButikerOmbud">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Info"/>
+        <xs:element ref="ButikOmbud" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RT90x" type="xs:string"/>
+  <xs:element name="Address4" type="xs:string"/>
+  <xs:element name="Address5" type="xs:string"/>
+  <xs:element name="Meddelande" type="xs:string"/>
+  <xs:element name="ButiksTyp" type="xs:string"/>
+  <xs:element name="Telefon" type="xs:string"/>
+  <xs:element name="ButikOmbud">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Typ"/>
+        <xs:element ref="Nr"/>
+        <xs:element ref="Namn"/>
+        <xs:element ref="Address1"/>
+        <xs:element ref="Address2"/>
+        <xs:element ref="Address3"/>
+        <xs:element ref="Address4"/>
+        <xs:element ref="Address5" minOccurs="0"/>
+        <xs:element ref="Telefon" minOccurs="0"/>
+        <xs:element ref="ButiksTyp"/>
+        <xs:element ref="Tjanster"/>
+        <xs:element ref="SokOrd" minOccurs="0"/>
+        <xs:element ref="Oppettider"/>
+        <xs:element ref="RT90x"/>
+        <xs:element ref="RT90y"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
